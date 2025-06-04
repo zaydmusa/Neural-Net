@@ -2,6 +2,7 @@ import neuralNet as neuralNet
 import numpy as np
 import pandas as pd
 from PIL import Image
+from matplotlib import pyplot as plt
 import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -10,6 +11,19 @@ def parseImage(filepath, csvName):
 	img = Image.open(filepath)
 	img_resized = img.resize((28, 28))
 	img_gray = img_resized.convert('L')
+
+	# Display the original image for reference
+	print("Now showing your original image.")
+	plt.imshow(img)
+	plt.axis('off')
+	plt.show()
+
+	# Display the adjusted image for reference
+	print("Now showing your processed image.")
+	plt.imshow(img_gray, cmap='gray')
+	plt.axis('off')
+	plt.show()
+
 	pixels = list(img_gray.getdata())
 
 	df = pd.DataFrame(pixels)
@@ -25,7 +39,7 @@ W3 = np.array(pd.read_csv(dir_path + '/Model-Data/W3.csv', header=None, index_co
 b3 = np.array(pd.read_csv(dir_path + '/Model-Data/b3.csv', header=None, index_col=False))
 
 # Get and adjust the image
-imagePath = input("Hey! To test the network against your image, please first crop the image to a square ratio with the clothing fully in frame, ideally against a dark background, then upload it to the Image-Uploads folder. Copy and paste the file path here and I'll take it from there: ")
+imagePath = input("Hey! To test the network against your image, please: \n1. Ensure the background is dark \n2. Crop the image to a square ratio \n3. Ensure the item's fully in frame \n4. Upload it to the Image-Uploads folder \nNow you're all set, just copy and paste the FULL file path here and I'll take it from there: ")
 imagePixelPath = parseImage(imagePath, "imagePixels")
 imagePixels = np.array(pd.read_csv(imagePixelPath, header=None, index_col=False))
 
@@ -51,4 +65,4 @@ while not guessAccuracy:
 		A3[guess] = 0
 		continue
 
-print("Yay! The model figured out your item in " + str(guesses) + " guesses.")
+print("Nice! The model figured out your item in " + str(guesses) + " guess(es).")

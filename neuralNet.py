@@ -152,10 +152,11 @@ def showPrediction(index, values, label, predictions):
 
 # training the model
 # W1, b1, W2, b2, W3, b3 = gradientDescent(trainValues, trainLabel, learningRate, iterations)
-# testing the model against test data to ensure it's not overfitting our training data
+
+# # testing the model against test data to ensure it's not overfitting our training data
 # predictions = testModel(W1, b1, W2, b2, W3, b3, testValues, testLabel)
 
-# show some of the test images to see where the model might struggle
+# # show some of the test images to see where the model might struggle or succeed
 # showPrediction(1, testValues, testLabel, predictions)
 # showPrediction(2, testValues, testLabel, predictions)
 # showPrediction(3, testValues, testLabel, predictions)
@@ -164,7 +165,7 @@ def showPrediction(index, values, label, predictions):
 # showPrediction(-1, testValues, testLabel, predictions)
 
 
-#Storing the most accurate training model's weights and biases to reuse w/o having to rerun the gradient descent
+#Storing the most accurate training model's weights and biases to reuse without having to rerun the gradient descent
 # pd.DataFrame(W1).to_csv(dir_path + '/Model-Data/W1.csv', header=False, index=False)
 # pd.DataFrame(b1).to_csv(dir_path + '/Model-Data/b1.csv', header=False, index=False)
 # pd.DataFrame(W2).to_csv(dir_path + '/Model-Data/W2.csv', header=False, index=False)
